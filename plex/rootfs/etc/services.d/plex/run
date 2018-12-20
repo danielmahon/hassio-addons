@@ -10,7 +10,7 @@ hass.log.info 'Starting the Plex Media Server'
 
 # Mount external drive
 mkdir -p /share/mnt
-mount /dev/sda1 /share/mnt
+mount -o ro /dev/sda1 /share/mnt
 
 export LD_LIBRARY_PATH=/usr/lib/plexmediaserver
 export PLEX_MEDIA_SERVER_HOME=/usr/lib/plexmediaserver
