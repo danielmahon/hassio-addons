@@ -47,10 +47,6 @@ ARG BUILD_DATE
 ARG BUILD_REF
 ARG BUILD_VERSION
 
-# Mount external drive
-RUN mkdir -p /share/mnt
-RUN mount /dev/sda1 /share/mnt
-
 # Labels
 LABEL \
     io.hass.name="Plex Media Server" \
