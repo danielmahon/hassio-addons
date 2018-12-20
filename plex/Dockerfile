@@ -15,6 +15,8 @@ RUN \
     uuid-runtime=2.31.1-0.4ubuntu3 \
     unrar=1:5.5.8-1 \
     unzip=6.0-21ubuntu1 \
+    exfat-fuse \
+    exfat-utils \
     \
     && if [ "${BUILD_ARCH}" = "amd64" ]; then ARCH="x86_64"; fi \
     && if [ "${BUILD_ARCH}" = "armhf" ]; then ARCH="arm7"; fi \
