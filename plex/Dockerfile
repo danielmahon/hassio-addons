@@ -11,23 +11,23 @@ RUN \
     apt-get update \
     \
     && apt-get install -y --no-install-recommends \
-        xmlstarlet=1.6.1-2 \
-        uuid-runtime=2.31.1-0.4ubuntu3 \
-        unrar=1:5.5.8-1 \
-        unzip=6.0-21ubuntu1 \
+    xmlstarlet=1.6.1-2 \
+    uuid-runtime=2.31.1-0.4ubuntu3 \
+    unrar=1:5.5.8-1 \
+    unzip=6.0-21ubuntu1 \
     \
     && if [ "${BUILD_ARCH}" = "amd64" ]; then ARCH="x86_64"; fi \
     && if [ "${BUILD_ARCH}" = "armhf" ]; then ARCH="arm7"; fi \
     && if [ "${BUILD_ARCH}" = "i386" ]; then ARCH="x86"; fi \
     \
     && curl -J -L -o /tmp/plexmediaserver.tgz \
-        "https://downloads.plex.tv/plex-media-server/1.14.1.5488-cc260c476/PlexMediaServer-1.14.1.5488-cc260c476-${ARCH}.spk" \
+    "https://downloads.plex.tv/plex-media-server/1.14.1.5488-cc260c476/PlexMediaServer-1.14.1.5488-cc260c476-${ARCH}.spk" \
     \
     && mkdir /usr/lib/plexmediaserver \
     && tar -xOf /tmp/plexmediaserver.tgz package.tgz | tar -xzf - -C /usr/lib/plexmediaserver/ \
     \
     && curl -J -L -o /tmp/webtool.zip \
-        "https://github.com/ukdtom/WebTools.bundle/releases/download/3.0.0/WebTools.bundle.zip" \
+    "https://github.com/ukdtom/WebTools.bundle/releases/download/3.0.0/WebTools.bundle.zip" \
     && unzip -d /opt  /tmp/webtool.zip \
     \
     && apt-get -y remove --purge unzip \
@@ -35,9 +35,9 @@ RUN \
     && apt-get -y clean \
     \
     && rm -fr \
-        /tmp/* \
-        /var/{cache,log}/* \
-        /var/lib/apt/lists/*
+    /tmp/* \
+    /var/{cache,log}/* \
+    /var/lib/apt/lists/*
 
 # Copy root filesystem
 COPY rootfs /
@@ -46,6 +46,10 @@ COPY rootfs /
 ARG BUILD_DATE
 ARG BUILD_REF
 ARG BUILD_VERSION
+
+# Mount external drive
+RUN mkdir -p /share/mnt
+RUN mount /dev/sda1 /share/mnt
 
 # Labels
 LABEL \
